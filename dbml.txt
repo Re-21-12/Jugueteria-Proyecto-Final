@@ -1,0 +1,40 @@
+// Define your database structure using DBML
+// Learn more at: https://dbdiagram.io/docs
+
+
+
+Table juguete as "Juguete" {
+  id_juguete int [primary key]
+  nombre varchar(255) [not null]
+  venta decimal(10,2) [not null]
+  cantidad int [not null]
+  estado varchar(255) [not null]
+}
+
+Table distribuidor as "Distribuidor" {
+  id_distribuidor int [primary key]
+  id_juguete int [not null]
+ id_factura int [not null]
+  nombre varchar(255)
+}
+
+Table factura as "Factura" {
+  id_factura int [primary key]
+  fecha datetime [not null]
+  total double [not null]
+  nombre varchar(255) [not null]
+}
+
+Table cliente as "Cliente" {
+  id_cliente int [primary key]
+  id_factura int [not null]
+  nombre varchar(255) [not null]
+}
+  Ref:cliente.id_factura > factura.id_factura
+
+  Ref: distribuidor.id_juguete > juguete.id_juguete
+  Ref: distribuidor.id_factura > factura.id_factura
+
+// Ensure you use the correct database name (in this case, "jugueteria")
+ 
+
