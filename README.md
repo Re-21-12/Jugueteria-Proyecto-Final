@@ -11,10 +11,10 @@
 A continuación, se proporciona una documentación en formato Markdown para el código de la clase `ProcesosJugueteria`. Esta documentación externa describe la estructura del código e indica los funcionamientos de las distintas implementacione realizadas para las operaciones hacia la base de datos.
 
 La clase `ProcesosJugueteria` es parte de un sistema de ventas de una juguetería, como:
-1. revisar el inventario
-2. actualizar juguetes
-3. eliminar juguetes 
-4. insertar nuevos juguetes con base a .
+1. revisar el inventario.
+2. actualizar juguetes.
+3. eliminar juguetes. 
+4. insertar nuevos juguetes con base.
 
 ## Atributos
 
@@ -73,3 +73,21 @@ Además de los métodos mencionados anteriormente, la clase contiene varios mét
 La clase `ProcesosJugueteria` se utiliza como parte de un sistema más amplio para gestionar la información de una juguetería. Proporciona funcionalidades para revisar, actualizar y eliminar juguetes, así como para insertar nuevos juguetes y gestionar la información relacionada con distribuidores, clientes y facturas.
 
 La clase se comunica con una base de datos MariaDB a través de JDBC para realizar las distintas operaciones.
+
+# Documentación de la Clase Ventana
+
+La clase `Ventana` es una interfaz gráfica de usuario (GUI) utilizada para interactuar con un sistema de administración de juguetes. Esta interfaz permite a los usuarios realizar acciones como revisar el inventario, registrar una venta, actualizar información de juguetes y eliminar juguetes del inventario.
+
+# Clase Ventana
+
+La clase ventana en la funcion `createUI()` se encarga de generar la interfaz grafica junto con las disitintas funciones del _ABC_.
+La funcion `actionPerformed()` se encarga de productir la logica en los campos y subirla haciendo uso de la clase `ProcesosJugueteria`.
+
+Para generar los distintos campos usamos atributos tales como:
+	* Container panel;
+	* JTextField id;
+	* JTextField nombre;
+	* JTextField venta;
+	* JComboBox<String> estadoComboBox;
+	* JTextField nombreDistribuidor;
+	* JTextField cliente; 
