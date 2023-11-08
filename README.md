@@ -32,3 +32,44 @@ La clase `ProcesosJugueteria` es parte de un sistema de gestión de una jugueter
 
 ```java
 public void revisarInventario(Inventario inventario) throws SQLException
+
+- `actualizarJuguete`
+
+    Este método recupera información sobre los juguetes desde la base de datos y actualiza la lista de juguetes en el objeto inventario.
+
+    ```java
+    public void actualizarJuguete(Juguete juguete, String nombreDistribuidor, String nombreCliente) throws SQLException
+    ```
+
+- `eliminarJuguete`
+
+    Este método actualiza la información de un juguete en la base de datos y, si es necesario, actualiza también la información del distribuidor y del cliente relacionados con ese juguete.
+
+    ```java
+    public void eliminarJuguete(Integer id) throws SQLException
+    ```
+
+- `insertarJuguete`
+
+    Este método elimina un juguete de la base de datos, primero eliminando los registros relacionados en la tabla distribuidor y luego el registro del juguete en la tabla juguete.
+
+    ```java
+    public Factura insertarJuguete(Juguete juguete, String nombreDistribuidor, String nombreCliente) throws SQLException
+    ```
+
+**Métodos Auxiliares**
+
+Además de los métodos mencionados anteriormente, la clase contiene varios métodos auxiliares que se utilizan en las operaciones principales. Estos métodos auxiliares incluyen:
+
+- `insertarDistribuidor`: Inserta un registro en la tabla distribuidor relacionado con un juguete.
+- `insertarFactura`: Inserta un registro en la tabla factura relacionado con un juguete.
+- `insertarCliente`: Inserta un registro en la tabla cliente relacionado con un juguete.
+- `selectDistribuidor`: Recupera información sobre el distribuidor relacionado con un juguete.
+- `selectCliente`: Recupera información sobre el cliente relacionado con un juguete.
+- `generarId`: Genera un número de identificación aleatorio.
+
+**Uso**
+
+La clase `ProcesosJugueteria` se utiliza como parte de un sistema más amplio para gestionar la información de una juguetería. Proporciona funcionalidades para revisar, actualizar y eliminar juguetes, así como para insertar nuevos juguetes y gestionar la información relacionada con distribuidores, clientes y facturas.
+
+La clase se comunica con una base de datos MariaDB a través de JDBC para realizar operaciones de lectura y escritura de datos.
