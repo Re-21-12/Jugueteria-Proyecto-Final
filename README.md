@@ -84,10 +84,10 @@ La clase ventana en la funcion `createUI()` se encarga de generar la interfaz gr
 La funcion `actionPerformed()` se encarga de productir la logica en los campos y subirla haciendo uso de la clase `ProcesosJugueteria`.
 
 Para generar los distintos campos usamos atributos tales como:
-	* Container panel;
-	* JTextField id;
-	* JTextField nombre;
-	* JTextField venta;
-	* JComboBox<String> estadoComboBox;
-	* JTextField nombreDistribuidor;
-	* JTextField cliente; 
+	- Container panel;
+	- JTextField id;
+	- JTextField nombre;
+	- JTextField venta;
+	- JComboBox<String> estadoComboBox;
+	- JTextField nombreDistribuidor;
+	- JTextField cliente; 
