@@ -28,10 +28,8 @@ La clase `ProcesosJugueteria` es parte de un sistema de gestión de una jugueter
 
 ## Métodos
 
-### `revisarInventario`
-
-```java
-public void revisarInventario(Inventario inventario) throws SQLException
+- `revisarInventario`
+    Este metodo revisa los juguetes que se encuentran en la tabla juguete de la base de datos generando una revision de los productos en el inventario.
 
 - `actualizarJuguete`
 
