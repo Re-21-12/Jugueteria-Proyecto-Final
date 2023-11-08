@@ -8,8 +8,6 @@
 
 # Documentación del Código - ProcesosJugueteria
 
-A continuación, se proporciona una documentación en formato Markdown para el código de la clase `ProcesosJugueteria`. Esta documentación externa describe la estructura del código e indica los funcionamientos de las distintas implementacione realizadas para las operaciones hacia la base de datos.
-
 La clase `ProcesosJugueteria` es parte de un sistema de ventas de una juguetería, como:
 1. revisar el inventario.
 2. actualizar juguetes.
