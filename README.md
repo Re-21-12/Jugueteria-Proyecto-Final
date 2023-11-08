@@ -8,11 +8,13 @@
 
 # Documentación del Código - ProcesosJugueteria
 
-A continuación, se proporciona una documentación en formato Markdown para el código de la clase `ProcesosJugueteria`. Esta documentación describe la estructura del código y proporciona una visión general de su funcionalidad.
+A continuación, se proporciona una documentación en formato Markdown para el código de la clase `ProcesosJugueteria`. Esta documentación externa describe la estructura del código e indica los funcionamientos de las distintas implementacione realizadas para las operaciones hacia la base de datos.
 
-## Resumen
-
-La clase `ProcesosJugueteria` es parte de un sistema de gestión de una juguetería y contiene métodos para realizar diversas operaciones, como revisar el inventario, actualizar juguetes, eliminar juguetes e insertar nuevos juguetes junto con la información relacionada, como distribuidores, clientes y facturas.
+La clase `ProcesosJugueteria` es parte de un sistema de ventas de una juguetería, como:
+1. revisar el inventario
+2. actualizar juguetes
+3. eliminar juguetes 
+4. insertar nuevos juguetes con base a .
 
 ## Atributos
 
@@ -70,4 +72,4 @@ Además de los métodos mencionados anteriormente, la clase contiene varios mét
 
 La clase `ProcesosJugueteria` se utiliza como parte de un sistema más amplio para gestionar la información de una juguetería. Proporciona funcionalidades para revisar, actualizar y eliminar juguetes, así como para insertar nuevos juguetes y gestionar la información relacionada con distribuidores, clientes y facturas.
 
-La clase se comunica con una base de datos MariaDB a través de JDBC para realizar operaciones de lectura y escritura de datos.
+La clase se comunica con una base de datos MariaDB a través de JDBC para realizar las distintas operaciones.
