@@ -73,8 +73,7 @@ Además de los métodos mencionados anteriormente, la clase contiene varios mét
 
 **Uso**
 
-La clase `ProcesosJugueteria` se utiliza como parte de un sistema más amplio para gestionar la información de una juguetería. Proporciona funcionalidades para revisar, actualizar y eliminar juguetes, así como para insertar nuevos juguetes y gestionar la información relacionada con distribuidores, clientes y facturas.
-
+La clase `ProcesosJugueteria` se utiliza como clase para gestionar los procesos de una juguetería. Proporciona funciones para revisar, actualizar y eliminar juguetes, así como para insertar nuevos juguetes y gestionar la información relacionada con distribuidores, clientes y facturas.
 La clase se comunica con una base de datos MariaDB a través de JDBC para realizar las distintas operaciones.
 
 # Documentación de la Clase Ventana
