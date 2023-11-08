@@ -1,5 +1,8 @@
 # Jugueteria-Proyecto-Final
 
+## Interfaz Grafica 
+![image](https://github.com/Re-21-12/Jugueteria-Proyecto-Final/assets/104967229/f1aeca1a-b754-48f3-8b10-f214afb8d8d2)
+
 ## Diagrama ER Base de datos
 ![Untitled](https://github.com/Re-21-12/Jugueteria-Proyecto-Final/assets/104967229/e98a18a5-dc35-4ce6-b66f-f7d39fe8e38d)
 
