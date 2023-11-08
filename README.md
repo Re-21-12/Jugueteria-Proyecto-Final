@@ -79,7 +79,7 @@ La clase se comunica con una base de datos MariaDB a través de JDBC para realiz
 
 # Documentación de la Clase Ventana
 
-La clase `Ventana` es una interfaz gráfica de usuario (GUI) utilizada para interactuar con un sistema de administración de juguetes. Esta interfaz permite a los usuarios realizar acciones como revisar el inventario, registrar una venta, actualizar información de juguetes y eliminar juguetes del inventario.
+La clase `Ventana` es una interfaz gráfica de usuario (GUI) utilizada para permitir a los usuarios realizar acciones como revisar el inventario, registrar una venta, actualizar información de juguetes y eliminar juguetes del inventario.
 
 # Clase Ventana
 
