@@ -1,4 +1,4 @@
-# Jugueteria-Proyecto-Final
+# Jugueteria Proyecto Final Victor Macario 7690-22-5042
 
 ## Interfaz Grafica 
 ![image](https://github.com/Re-21-12/Jugueteria-Proyecto-Final/assets/104967229/f1aeca1a-b754-48f3-8b10-f214afb8d8d2)
