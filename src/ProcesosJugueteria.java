@@ -50,7 +50,7 @@ public class ProcesosJugueteria implements IProcesosJugueteria {
 	}
 
 	@Override
-	public void actualizarJuguete(Juguete juguete) throws SQLException {
+	public void actualizarJuguete(Juguete juguete, String nombreDistribuidor, String nombreCliente) throws SQLException {
 		// TODO Auto-generated method stub
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
@@ -67,6 +67,30 @@ public class ProcesosJugueteria implements IProcesosJugueteria {
 			} else {
 				System.out.println("No se pudo actualizar el juguete.");
 			}
+			//actualizar el distribuidor en base al juguete
+			String updateQueryDistribuidor = "UPDATE distribuidor SET nombre = ? WHERE id_juguete = ?";
+		//guardamos los datos en un arreglo
+			int[] datosJuguete = selectDistribuidor(juguete.getId());
+			statement = conexion.prepareStatement(updateQueryDistribuidor);
+			statement.setString(1, nombreDistribuidor);
+			statement.setInt(2, juguete.getId());
+			int rowsUpdatedDistribuidor = statement.executeUpdate();
+			if (rowsUpdatedDistribuidor > 0) {
+				System.out.println("Distribuidor actualizado con éxito.");
+			} else {
+				System.out.println("No se pudo actualizar el distribuidor.");
+			}
+			String updateQueryCliente = "UPDATE cliente SET nombre = ? WHERE id_factura = ?";
+			statement = conexion.prepareStatement(updateQueryCliente);
+			statement.setString(1, nombreCliente);
+			statement.setInt(2, datosJuguete[1]);
+			int rowsUpdatedCliente = statement.executeUpdate();
+			if (rowsUpdatedCliente > 0) {
+				System.out.println("Cliente actualizado con éxito.");
+			} else {
+				System.out.println("No se pudo actualizar el cliente.");
+			}
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			System.err.println(e);
 			e.printStackTrace();
@@ -85,13 +109,23 @@ public class ProcesosJugueteria implements IProcesosJugueteria {
 	public void eliminarJuguete(Integer id) throws SQLException {
 		// TODO Auto-generated method stub
 		try {
+			
+			//primero eliminar el distribuidor y luego el juguete 
 			Class.forName("org.mariadb.jdbc.Driver");
 			conexion = DriverManager.getConnection(url, user, password);
-			String deleteQuery = "DELETE from juguete WHERE id_juguete =? ";
+			String deleteQueryDistribuidor = "DELETE from distribuidor WHERE id_juguete = ? ";
+			statement = conexion.prepareStatement(deleteQueryDistribuidor);
+			statement.setInt(1, id);
+			int rowsDeletedDistribuidor = statement.executeUpdate();
+			if (rowsDeletedDistribuidor > 0) {
+				System.out.println("Eliminado");
+			}
+			
+			String deleteQuery = "DELETE from juguete WHERE id_juguete = ? ";
 			statement = conexion.prepareStatement(deleteQuery);
 			statement.setInt(1, id);
 			int rowsDeleted = statement.executeUpdate();
-			if(rowsDeleted > 0) {
+			if (rowsDeleted > 0) {
 				System.out.println("Eliminado");
 			}
 		} catch (ClassNotFoundException | SQLException e) {
@@ -108,7 +142,8 @@ public class ProcesosJugueteria implements IProcesosJugueteria {
 		}
 	}
 
-	public Factura insertarJuguete(Juguete juguete, String nombreDistribuidor, String nombreCliente) throws SQLException {
+	public Factura insertarJuguete(Juguete juguete, String nombreDistribuidor, String nombreCliente)
+			throws SQLException {
 		Factura factura = new Factura();
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
@@ -118,44 +153,44 @@ public class ProcesosJugueteria implements IProcesosJugueteria {
 			Integer jugueteId = generarId();
 			juguete.setId(jugueteId);
 			System.out.println(juguete.getId());
-			statement.setInt(1,juguete.getId());
+			statement.setInt(1, juguete.getId());
 			Integer facturaId = generarId();
 			statement.setString(2, juguete.getNombre());
-			//estado
+			// estado
 			Double venta = 0.0;
-			switch(juguete.getEstado()) {
-			//"Oferta", "Normal", "Liquidacion", "Temporada" 
+			switch (juguete.getEstado()) {
+			// "Oferta", "Normal", "Liquidacion", "Temporada"
 			case "Oferta":
-				//si es oferta 25%
-				Double oferta = (juguete.getVenta())-(juguete.getVenta()* 0.25);
+				// si es oferta 25%
+				Double oferta = (juguete.getVenta()) - (juguete.getVenta() * 0.25);
 				venta = oferta;
 				break;
 			case "Normal":
 				venta = juguete.getVenta();
 				break;
 			case "Liquidacion":
-				Double Liquidacion = (juguete.getVenta())-(juguete.getVenta()* 0.75);
+				Double Liquidacion = (juguete.getVenta()) - (juguete.getVenta() * 0.75);
 				venta = Liquidacion;
 				break;
 			case "Temporada":
-				Double Temporada = (juguete.getVenta())-(juguete.getVenta()* 0.50);
+				Double Temporada = (juguete.getVenta()) - (juguete.getVenta() * 0.50);
 				venta = Temporada;
 				break;
 			}
 			statement.setString(4, juguete.getEstado());
 			statement.setDouble(3, venta);
-			int rowsInserted = statement.executeUpdate();//se inserta el juguete
+			int rowsInserted = statement.executeUpdate();// se inserta el juguete
 			if (rowsInserted != 0) {
 				System.out.println("Se ha insertado la fila con exito");
 			}
-			Distribuidor distribuidor = new Distribuidor(0,"",juguete);
-			//crea la factura
+			Distribuidor distribuidor = new Distribuidor(0, "", juguete);
+			// crea la factura
 			factura = distribuidor.Generar_factura(facturaId, juguete.getVenta(), juguete, nombreDistribuidor);
 			insertarFactura(juguete, factura);
 			insertarDistribuidor(juguete, nombreDistribuidor, nombreCliente, factura);
-			//inserta la factura
-		
-		//inserta el distribuidor
+			// inserta la factura
+
+			// inserta el distribuidor
 		} catch (ClassNotFoundException | SQLException e) {
 			System.err.println(e);
 			e.printStackTrace();
@@ -169,7 +204,7 @@ public class ProcesosJugueteria implements IProcesosJugueteria {
 			}
 		}
 		return factura;
-		
+
 	}
 
 	private void insertarDistribuidor(Juguete juguete, String nombreDistribuidor, String nombreCliente, Factura factura)
@@ -189,11 +224,11 @@ public class ProcesosJugueteria implements IProcesosJugueteria {
 			if (rowsInsertedDistribuidor != 0) {
 				System.out.println("Se ha insertado el distribuidor con éxito");
 			}
-			insertarCliente(nombreCliente, factura);// inserta el cliente 
+			insertarCliente(nombreCliente, factura);// inserta el cliente
 		} catch (ClassNotFoundException | SQLException e) {
 			System.err.println(e);
 			e.printStackTrace();
-			
+
 		}
 	}
 
@@ -203,7 +238,7 @@ public class ProcesosJugueteria implements IProcesosJugueteria {
 			conexion = DriverManager.getConnection(url, user, password);
 			String insertQueryFactura = "INSERT INTO factura (id_Factura, fecha, total, nombre) VALUES (?, ?, ?, ?)";
 			statement = conexion.prepareStatement(insertQueryFactura);
-			statement.setInt(1, factura.getId());//aqui truena?
+			statement.setInt(1, factura.getId());// aqui truena?
 			System.out.println(factura.getId());
 			Timestamp fecha = Timestamp.valueOf(factura.getFecha());
 			statement.setTimestamp(2, fecha);
@@ -236,6 +271,47 @@ public class ProcesosJugueteria implements IProcesosJugueteria {
 			System.err.println(e);
 		}
 	}
+
+	private int[] selectDistribuidor(Integer id_juguete) {
+	//usaremos un arreglo para guardar de manera mas efectiva los datos 
+		int[] ids = new int[2];
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, user, password);
+			String selectQueryDistribuidor = "SELECT * FROM distribuidor WHERE id_juguete = ?";
+			PreparedStatement preparedStatement = conexion.prepareStatement(selectQueryDistribuidor);
+			preparedStatement.setInt(1, id_juguete);
+			ResultSet resultados = preparedStatement.executeQuery();
+		    if (resultados.next()) {
+	            // Recuperar los datos del distribuidor y crear un objeto Distribuidor
+	             ids[0] = resultados.getInt("id_distribuidor");
+	             ids[1] = resultados.getInt("id_factura");
+	        }
+		} catch (ClassNotFoundException | SQLException e) {
+			System.err.println(e);
+		}
+		
+		return ids;
+	}
+	private int selectCliente(Integer id_juguete) {
+		int id_cliente = 0;
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
+			conexion = DriverManager.getConnection(url, user, password);
+			String selectQueryDistribuidor = "SELECT * FROM cliente WHERE id_juguete = ?";
+			PreparedStatement preparedStatement = conexion.prepareStatement(selectQueryDistribuidor);
+			preparedStatement.setInt(1, id_juguete);
+			ResultSet resultados = preparedStatement.executeQuery();
+		    if (resultados.next()) {
+	            // Recuperar los datos del distribuidor y crear un objeto Distribuidor
+	             id_cliente = resultados.getInt("id_cliente");
+	        }
+		} catch (ClassNotFoundException | SQLException e) {
+			System.err.println(e);
+		}
+		return id_cliente;
+	}
+	
 
 //metodos extra
 	private Integer generarId() {
