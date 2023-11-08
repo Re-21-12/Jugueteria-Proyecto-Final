@@ -1,11 +1,13 @@
 # Jugueteria-Proyecto-Final
+
 ## Diagrama ER Base de datos
 ![Untitled](https://github.com/Re-21-12/Jugueteria-Proyecto-Final/assets/104967229/e98a18a5-dc35-4ce6-b66f-f7d39fe8e38d)
 
 ## Diagrama UML
 
-## Documentacion Codigo
+![jugueteria](https://github.com/Re-21-12/Jugueteria-Proyecto-Final/assets/104967229/dc33c7d5-d4cf-4d0a-b0d6-7c9d9f9b18b8)
 
+## Documentacion Codigo
 # Documentación del Código - ProcesosJugueteria
 
 La clase `ProcesosJugueteria` es parte de un sistema de ventas de una juguetería, como:
